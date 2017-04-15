@@ -1,0 +1,14 @@
+{
+  "name": "lambda-geoip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "s3": "zip -9 -r --exclude=.git/* lambda.zip . && aws s3 cp lambda.zip s3://smallorange-lambdas/geo-ip/lambda.zip"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "maxmind": "^2.2.0"
+  }
+}
