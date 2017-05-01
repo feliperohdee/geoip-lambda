@@ -1,11 +1,15 @@
 {
-  "name": "lambda-geoip",
+  "name": "geoip-lambda",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "s3": "zip -9 -r --exclude=.git/* lambda.zip . && aws s3 cp lambda.zip s3://smallorange-lambdas/geo-ip/lambda.zip"
-  },
+    "clean": "rm -rf lambda.zip",
+    "zip": "zip -9 -r --exclude=.git/* --exclude=spec/* lambda.zip .",
+    "s3": "aws s3 cp lambda.zip s3://smallorange-lambdas/geoip/lambda.zip",
+    "updateLambda": "aws lambda update-function-code --function-name geoip --s3-bucket smallorange-lambdas --s3-key geoip/lambda.zip --region us-east-1",
+    "deploy": "npm run clean && npm run zip && npm run s3 && npm run updateLambda; npm run clean"
+  }, 
   "author": "",
   "license": "ISC",
   "dependencies": {
